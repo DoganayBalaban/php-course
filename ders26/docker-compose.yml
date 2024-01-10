@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:latest
+    container_name: ders26-nginx
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx:/etc/nginx/default.conf
+      - ./ders27:/var/www
+
+
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: ders26-app
+    restart: always
+    working_dir: /var/www/
+    volumes:
+      - ./ders27:/var/www/
